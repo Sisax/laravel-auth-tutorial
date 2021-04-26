@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\UserNotificationsController;
+use App\Http\Controllers\BestReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +29,8 @@ Route::get('/contact', [ContactController::class, 'show']);
 Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/payments/create', [PaymentsController::class, 'show'])->middleware('auth');
 Route::post('/payments', [PaymentsController::class, 'store'])->middleware('auth');
-Route::get('notifications', [UserNotificationsController::class, 'show'])->middleware('auth');
+Route::get('/notifications', [UserNotificationsController::class, 'show'])->middleware('auth');
+
+Route::get('/conversation', [ConversationController::class, 'index']);
+Route::get('/conversation/{conversation}', [ConversationController::class, 'show']);
+Route::post('/best-replies/{reply}', [BestReplyController::class, 'store']);
